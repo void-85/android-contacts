@@ -15,6 +15,7 @@ public class BaseListDiffCallback<T>
         extends    DiffUtil.ItemCallback<T>
         implements ListDiffInterface    <T>
 {
+
     public boolean theSameAs( T asWhat )
     {
         return this.hashCode() == asWhat.hashCode();
