@@ -11,34 +11,27 @@ import ru.yandex.practicum.contacts.presentation.main.ContactUi;
 import ru.yandex.practicum.contacts.presentation.sort.SortTypeUI;
 
 
-public class BaseListDiffCallback<T>
-        extends    DiffUtil.ItemCallback<T>
-        implements ListDiffInterface    <T>
-{
+public class BaseListDiffCallback<T extends ListDiffInterface<T>> extends DiffUtil.ItemCallback<T> {
 
-    public boolean theSameAs( T asWhat )
-    {
+    public boolean theSameAs(T asWhat) {
         return this.hashCode() == asWhat.hashCode();
     }
 
     @Override
-    public boolean areItemsTheSame(@NonNull T oldItem,@NonNull T newItem)
-    {
+    public boolean areItemsTheSame(@NonNull T oldItem, @NonNull T newItem) {
         //return oldItem.hashCode() == newItem.hashCode();
-        return this.theSameAs( newItem );
+        return this.theSameAs(newItem);
     }
 
     @SuppressLint("DiffUtilEquals")
     @Override
-    public boolean areContentsTheSame(@NonNull T oldItem, @NonNull T newItem)
-    {
+    public boolean areContentsTheSame(@NonNull T oldItem, @NonNull T newItem) {
         return oldItem.equals(newItem);
     }
 
     @Nullable
     @Override
-    public Object getChangePayload(@NonNull T oldItem, @NonNull T newItem)
-    {
+    public Object getChangePayload(@NonNull T oldItem, @NonNull T newItem) {
         return newItem;
     }
 }
